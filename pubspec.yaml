@@ -27,5 +27,7 @@ flutter:
   
   assets:
     - assets/
+    - assets/icons/       # Icons for the app
+    - assets/images/      # Images for the app
 
   
