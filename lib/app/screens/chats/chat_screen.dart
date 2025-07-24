@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wispurr/app/widgets/chat_widget.dart';
 
+import 'message_screen.dart';
+
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
 
@@ -41,9 +43,21 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
             Expanded(
                 child: ListView.builder(
-              itemBuilder: (ctx, idx) => chatWidget(
-                title: "User1",
-                message: "Hello",
+              itemBuilder: (ctx, idx) => GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MessageScreen(
+                        messageID: "message_id_$idx",
+                      ),
+                    ),
+                  );
+                },
+                child: chatWidget(
+                  title: "User1",
+                  message: "Hello",
+                ),
               ),
               itemCount: 10,
             ))
