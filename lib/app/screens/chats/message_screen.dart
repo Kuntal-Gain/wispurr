@@ -29,12 +29,12 @@ class _MessageScreenState extends State<MessageScreen> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
           onPressed: () => Navigator.pop(context),
         ),
         backgroundColor: kBackgroundColor,
         elevation: 1,
-        title: Row(
+        title: const Row(
           children: [
             CircleAvatar(
               radius: 20,
@@ -45,21 +45,25 @@ class _MessageScreenState extends State<MessageScreen> {
               children: [
                 Text('Contact Name',
                     style: TextStyle(fontSize: 16, color: Colors.white)),
-                Text('Message ID: ${widget.messageID}',
-                    style: TextStyle(fontSize: 12, color: Colors.white70)),
+                Text('Online',
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: kAccentPurple,
+                      fontWeight: FontWeight.bold,
+                    )),
               ],
             ),
           ],
         ),
         actions: [
           IconButton(
-              icon: Icon(Icons.videocam, color: Colors.white),
+              icon: const Icon(Icons.videocam, color: Colors.white),
               onPressed: () => notImplementedToast()),
           IconButton(
-              icon: Icon(Icons.call, color: Colors.white),
+              icon: const Icon(Icons.call, color: Colors.white),
               onPressed: () => notImplementedToast()),
           IconButton(
-              icon: Icon(Icons.more_vert, color: Colors.white),
+              icon: const Icon(Icons.more_vert, color: Colors.white),
               onPressed: () => notImplementedToast()),
         ],
       ),
@@ -68,7 +72,7 @@ class _MessageScreenState extends State<MessageScreen> {
           Expanded(
             child: ListView.builder(
               reverse: true,
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               itemCount: _messages.length,
               itemBuilder: (context, index) {
                 final isMe = index % 2 == 0; // Alternates for demo
@@ -76,8 +80,9 @@ class _MessageScreenState extends State<MessageScreen> {
                   alignment:
                       isMe ? Alignment.centerRight : Alignment.centerLeft,
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 4),
-                    padding: EdgeInsets.symmetric(vertical: 10, horizontal: 14),
+                    margin: const EdgeInsets.symmetric(vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 14),
                     constraints: BoxConstraints(
                         maxWidth: MediaQuery.of(context).size.width * 0.75),
                     decoration: BoxDecoration(
@@ -88,7 +93,7 @@ class _MessageScreenState extends State<MessageScreen> {
                           color: Colors.grey.withOpacity(0.2),
                           spreadRadius: 1,
                           blurRadius: 2,
-                          offset: Offset(0, 1),
+                          offset: const Offset(0, 1),
                         ),
                       ],
                     ),
@@ -103,8 +108,10 @@ class _MessageScreenState extends State<MessageScreen> {
               },
             ),
           ),
+          const SizedBox(height: 10),
           Container(
-            padding: EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, bottom: 10, top: 5),
             decoration: BoxDecoration(
               color: kSurfaceLevel2,
               boxShadow: [
@@ -112,7 +119,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   color: Colors.grey.withOpacity(0.2),
                   spreadRadius: 1,
                   blurRadius: 5,
-                  offset: Offset(0, -2),
+                  offset: const Offset(0, -2),
                 ),
               ],
             ),
@@ -123,25 +130,26 @@ class _MessageScreenState extends State<MessageScreen> {
                 Expanded(
                   child: TextField(
                     controller: _controller,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
+                    maxLines: null,
                     decoration: InputDecoration(
                       hintText: "Type a message",
-                      hintStyle: TextStyle(color: Colors.white70),
+                      hintStyle: const TextStyle(color: Colors.white70),
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(24),
                           borderSide: BorderSide.none),
                       fillColor: kSurfaceLevel3,
                       filled: true,
-                      contentPadding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 16, vertical: 8),
                     ),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 CircleAvatar(
                   backgroundColor: kAccentPurple,
                   child: IconButton(
-                    icon: Icon(Icons.send, color: Colors.white, size: 20),
+                    icon: const Icon(Icons.send, color: Colors.white, size: 20),
                     onPressed: () {
                       if (_controller.text.trim().isNotEmpty) {
                         setState(() {

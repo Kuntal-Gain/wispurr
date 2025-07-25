@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wispurr/app/screens/home_screen.dart';
 
+import 'app/screens/auth/auth_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -10,8 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
+    const isLogged = false;
+
+    return const MaterialApp(
+      home: isLogged ? HomeScreen() : AuthScreen(),
     );
   }
 }

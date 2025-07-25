@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  List<Widget> _screens = [
+  final List<Widget> _screens = [
     const ChatScreen(),
     const NotImplementedPage(),
     const NotImplementedPage(),
@@ -113,7 +113,7 @@ Widget iconBtns({
             ),
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Text(
           title,
           style: TextStyle(
@@ -141,14 +141,14 @@ class NotImplementedPage extends StatelessWidget {
           Container(
             height: 100,
             width: 100,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.red,
               shape: BoxShape.circle,
             ),
-            child: Icon(Icons.warning_amber_rounded, color: Colors.white),
+            child: const Icon(Icons.warning_amber_rounded, color: Colors.white),
           ),
-          SizedBox(height: 10),
-          Text(
+          const SizedBox(height: 10),
+          const Text(
             'Feature is Not Implemented',
             style: TextStyle(color: Colors.white),
           ),

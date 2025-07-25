@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: Row(
                     children: [
                       GestureDetector(
-                        child: Icon(Icons.search, color: Colors.black),
+                        child: const Icon(Icons.search, color: Colors.black),
                       ),
                       GestureDetector(
                         child: Image.asset(
