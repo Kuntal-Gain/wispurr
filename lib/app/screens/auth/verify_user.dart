@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:io';
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -120,7 +119,6 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
         _pulseController.repeat(reverse: true);
       }
     } catch (e) {
-      print('Error initializing camera: $e');
       _showCameraError();
     }
   }
@@ -268,15 +266,15 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: kAccentPurple.withOpacity(0.3)),
             ),
-            child: Row(
+            child: const Row(
               children: [
                 Icon(
                   Icons.security,
                   color: kAccentPurple,
                   size: 20,
                 ),
-                const SizedBox(width: 12),
-                const Expanded(
+                SizedBox(width: 12),
+                Expanded(
                   child: Text(
                     'Your face data will be converted to an encryption key for secure E2E chats',
                     style: TextStyle(
@@ -379,9 +377,9 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.camera_alt_outlined,
-                      color: const Color(0xff8696A0),
+                      color: Color(0xff8696A0),
                       size: 64,
                     ),
                     const SizedBox(height: 16),
@@ -680,9 +678,8 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
     if (_cameraController != null) {
       try {
         await _cameraController!.setFlashMode(FlashMode.torch);
-      } catch (e) {
-        print('Error toggling flash: $e');
-      }
+        // ignore: empty_catches
+      } catch (e) {}
     }
   }
 
@@ -706,7 +703,6 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
 
       _pulseController.stop();
     } catch (e) {
-      print('Error capturing image: $e');
       setState(() {
         _isProcessing = false;
       });
@@ -739,8 +735,6 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
       // 3. Generate encryption key from facial features
       // 4. Store the key securely for E2E encryption
 
-      String generatedKey = await _generateKeyFromImage(_capturedImage!);
-
       // Navigate to next screen or back to chat
       Navigator.pushReplacement(
         context,
@@ -749,7 +743,6 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
         ),
       );
     } catch (e) {
-      print('Error processing image: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Failed to process image. Please try again.'),
@@ -761,17 +754,6 @@ class _FaceAuthScreenState extends State<FaceAuthScreen>
         _isProcessing = false;
       });
     }
-  }
-
-  Future<String> _generateKeyFromImage(XFile imageFile) async {
-    // Placeholder for your facial recognition algorithm
-    // This is where you'll implement:
-    // 1. Face detection and landmark extraction
-    // 2. Feature vector generation
-    // 3. Cryptographic key derivation
-
-    // For demonstration, returning a mock key
-    return "mock_face_encryption_key_${DateTime.now().millisecondsSinceEpoch}";
   }
 
   @override

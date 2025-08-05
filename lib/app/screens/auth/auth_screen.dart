@@ -2,9 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:wispurr/app/screens/auth/verify_user.dart';
-import 'package:wispurr/app/screens/chats/chat_screen.dart';
-import 'package:wispurr/app/screens/home_screen.dart';
-import 'package:wispurr/utils/constants/colors.dart';
+
+import '../../../utils/constants/colors.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -263,7 +262,7 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
     required String label,
     required VoidCallback onPressed,
   }) {
-    return Container(
+    return SizedBox(
       height: 56,
       child: ElevatedButton(
         onPressed: onPressed,
